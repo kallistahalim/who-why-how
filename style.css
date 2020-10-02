@@ -1,9 +1,17 @@
 body {
     background-image: url("./background.jpg");
+    height:100%;
+    width:100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
 
 .jumbotron, .row {
     opacity: 80%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+nav {
+    align-self: right;
 }
