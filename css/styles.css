@@ -10364,3 +10364,11 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+.logo {
+  width: 50px;
+}
+
+.how-to-order {
+  text-align : center;
+}
