@@ -43,4 +43,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+
+firebase.database().ref().on("value", function(snapshot){
+    console.log(snapshot.val())
+    $("#case").html(snapshot.val().case);
+    $("#test").html(snapshot.val().test);
+})
