@@ -44,8 +44,23 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+var firebaseNumber;
+
 firebase.database().ref().on("value", function(snapshot){
-    console.log(snapshot.val())
-    $("#case").html(snapshot.val().case);
-    $("#test").html(snapshot.val().test);
+    firebaseNumber = snapshot.val().id;
 })
+
+$("#submit").on("click",function() {
+    var agentNumber = $("#agent-number").val();
+ 
+    console.log(agentNumber);
+    console.log(firebaseNumber);
+    
+    if(agentNumber = firebaseNumber) {
+        $("#id-number").empty();
+        $("#question").html("hi");
+    } else {
+        $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700")
+    }
+})
+
