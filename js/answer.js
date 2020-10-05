@@ -19,6 +19,8 @@ firebase.database().ref().on("value", function (snapshot) {
     firebaseNumber = snapshot.val().id;
 })
 
+
+//submit button for ID submission
 $("#submit").on("click", function () {
     var agentNumber = $("#agent-number").val();
     console.log(agentNumber);
@@ -27,18 +29,8 @@ $("#submit").on("click", function () {
 
     if (agentNumber == firebaseNumber) {
         questionRendered();
-        
-        $(".question-button").on("click", function () {
-            console.log($(this).data("let"));
-            if ($(this).data("let") === unusedQuestions[i].answer) {
-                i++;
-                questionRendered();
-            } else {
-                $("#question").html("Sorry you are incorrect. Please try again!")
-            }
-        })
     } else {
-        $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700")
+        $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
     }
 })
 
@@ -75,11 +67,15 @@ var content = [{
     isDisplayed: true
 }]
 
+
+//not really sure if i need this
 i = 0;
 var unusedQuestions = content.filter(function(pieceOfContent) {
     return pieceOfContent.isDisplayed;
 });
 
+
+//render questions
 function questionRendered() {
     //print question
     questionPrinted = unusedQuestions[i].question;
@@ -94,4 +90,14 @@ function questionRendered() {
         b.text(unusedQuestions[i].options[j]);
         $("#options").append(b);
     }
+    //option click to move on to another questions, or stop if you answer incorrectly
+    $(".question-button").on("click", function () {
+        console.log($(this).data("let"));
+        if ($(this).data("let") === unusedQuestions[i].answer) {
+            i++;
+            questionRendered();
+        } else {
+            $("#question").html("Sorry you are incorrect. Please try again!")
+        }
+    })
 }
