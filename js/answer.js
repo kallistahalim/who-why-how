@@ -14,17 +14,19 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var firebaseNumber;
+var a;
 
 firebase.database().ref().on("value", function (snapshot) {
     firebaseNumber = snapshot.val().id;
+    a = snapshot.val().case;
 })
 
 
 //submit button for ID submission
 $("#submit").on("click", function () {
+    console.log(firebaseNumber);
     var agentNumber = $("#agent-number").val();
     console.log(agentNumber);
-    console.log(firebaseNumber);
     $("#id-number").empty();
 
     if (agentNumber == firebaseNumber) {
@@ -35,68 +37,65 @@ $("#submit").on("click", function () {
 })
 
 //content information
-var content = [{
-    case: 1,
-    question: "Who killed Theo?",
-    options: ["John", "Daniel", "Michelle", "Jamie"],
-    answer: 1,
-    isDisplayed: true
-}, {
-    case: 1,
-    question: "Which type of paperwork shows the proof of him/her killing Theo?",
-    options: ["Billionaire Weekly", "John's Interrogation Forms", "Daniel's Interrogation Forms", "Jamie's Interrogation Forms", "Michelle's Interrogation Forms", "Suspect Board"],
-    answer: 2,
-    isDisplayed: true
-}, {
-    case: 1,
-    question: "Where was the needle located before it poked Theo?",
-    options: ["Theo's button", "Michelle's pocket", "tennis ball", "John's solarium"],
-    answer: 2,
-    isDisplayed: true
-}, {
-    case: 2,
-    question: "Who killed Sheila?",
-    options: ["Sonny", "Shane", "Stella", "Jason", "Jane"],
-    answer: 3,
-    isDisplayed: true
-}, {
-    case: 2,
-    question: "What's suspicious about Stella?",
-    options: ["She likes grandma", "She hates grandma", "She threw up"],
-    answer: 2,
-    isDisplayed: true
-}]
-
+var content = [
+    [{
+        question: "Who killed Theo?",
+        options: ["John", "Daniel", "Michelle", "Jamie"],
+        answer: 1,
+        isDisplayed: true
+    }, {
+        question: "Which type of paperwork shows the proof of him/her killing Theo?",
+        options: ["Billionaire Weekly", "John's Interrogation Forms", "Daniel's Interrogation Forms", "Jamie's Interrogation Forms", "Michelle's Interrogation Forms", "Suspect Board"],
+        answer: 2,
+        isDisplayed: true
+    }, {
+        question: "Where was the needle located before it poked Theo?",
+        options: ["Theo's button", "Michelle's pocket", "tennis ball", "John's solarium"],
+        answer: 2,
+        isDisplayed: true
+    }],
+    [{
+        question: "Who killed Sheila?",
+        options: ["Sonny", "Shane", "Stella", "Jason", "Jane"],
+        answer: 3,
+        isDisplayed: true
+    }, {
+        question: "What's suspicious about Stella?",
+        options: ["She likes grandma", "She hates grandma", "She threw up"],
+        answer: 2,
+        isDisplayed: true
+    }]
+]
 
 //not really sure if i need this
 i = 0;
-var unusedQuestions = content.filter(function(pieceOfContent) {
-    return pieceOfContent.isDisplayed;
-});
 
+// var unusedQuestions = content.filter(function (pieceOfContent) {
+//     return pieceOfContent.isDisplayed;
+// });
 
 //render questions
 function questionRendered() {
     //print question
-    questionPrinted = unusedQuestions[i].question;
+    questionPrinted = content[a][i].question;
     $("#question").html(questionPrinted);
 
     //print options
     $("#options").empty();
-    for (var j = 0; j < unusedQuestions[j].options.length; j++) {
+    for (var j = 0; j < content[a][i].options.length; j++) {
         var b = $("<button>");
         b.addClass("question-button");
         b.attr("data-let", j);
-        b.text(unusedQuestions[i].options[j]);
+        b.text(content[a][i].options[j]);
         $("#options").append(b);
     }
     //option click to move on to another questions, or stop if you answer incorrectly
     $(".question-button").on("click", function () {
-        console.log($(this).data("let"));
-        if ($(this).data("let") === unusedQuestions[i].answer) {
+        if ($(this).data("let") === content[a][i].answer) {
             i++;
             questionRendered();
         } else {
+            $("#options").empty();
             $("#question").html("Sorry you are incorrect. Please try again!")
         }
     })
