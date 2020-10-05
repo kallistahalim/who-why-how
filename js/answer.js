@@ -15,6 +15,7 @@ firebase.initializeApp(firebaseConfig);
 
 var firebaseNumber;
 var a;
+var i = 0;
 
 firebase.database().ref().on("value", function (snapshot) {
     firebaseNumber = snapshot.val().id;
@@ -67,19 +68,18 @@ var content = [
     }]
 ]
 
-//not really sure if i need this
-i = 0;
-
-// var unusedQuestions = content.filter(function (pieceOfContent) {
-//     return pieceOfContent.isDisplayed;
-// });
-
 
 //render questions
 function questionRendered() {
-    //print question
-    questionPrinted = content[a][i].question;
-    $("#question").html(questionPrinted);
+    if (i >= content[a].length ) {
+        $("#options").empty();
+        $("#question").html("Congratulation! You won!!");
+        return;
+    } else {
+        //print question
+        questionPrinted = content[a][i].question;
+        $("#question").html(questionPrinted);
+    }
 
     //print options
     $("#options").empty();
