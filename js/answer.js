@@ -74,6 +74,7 @@ i = 0;
 //     return pieceOfContent.isDisplayed;
 // });
 
+
 //render questions
 function questionRendered() {
     //print question
@@ -94,9 +95,12 @@ function questionRendered() {
         if ($(this).data("let") === content[a][i].answer) {
             i++;
             questionRendered();
+
         } else {
             $("#options").empty();
             $("#question").html("Sorry you are incorrect. Please try again!")
         }
     })
+
+
 }
