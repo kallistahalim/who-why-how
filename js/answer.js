@@ -64,7 +64,7 @@ var content = [
     {
         question: "What does the letter in Sheila's pocket say?",
         options: ["I am her brother and I love her I will marry her", "I am her brother and I love her I will murry her", "I am her brother and I love her I will mirry her", "I am her brother and I love her I will merry her"],
-        answer: 0,
+        answer: 1,
         isDisplayed: true
     },
     {
@@ -76,12 +76,20 @@ var content = [
 ]
 ]
 
+function randomPrize() {
+    prize = ["1 Pao De Queijo from Borrowed Oven", "50% off Borrowed Oven","50% off Borrowed Oven","50% off Borrowed Oven","25% off Borrowed Oven", "25% off Borrowed Oven","25% off Borrowed Oven","25% off Borrowed Oven", "One Free Mystery Game from Who-Why-How", "Buy One Get One Mystery Game from Who-Why-How"];
+    var decision = prize[Math.floor(Math.random()* prize.length)];
+    console.log(decision);
+    $("#options").html("You have won " + decision);
+
+}
 
 //render questions
 function questionRendered() {
     if (i >= content[a].length ) {
         $("#options").empty();
         $("#question").html("Congratulation! You won!!");
+        randomPrize();
         return;
     } else {
         //print question
