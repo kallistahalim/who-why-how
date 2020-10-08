@@ -40,32 +40,40 @@ $("#submit").on("click", function () {
 //content information
 var content = [
     [{
-        question: "Who killed Theo?",
-        options: ["John", "Daniel", "Michelle", "Jamie"],
-        answer: 1,
-        isDisplayed: true
-    }, {
-        question: "Which type of paperwork shows the proof of him/her killing Theo?",
-        options: ["Billionaire Weekly", "John's Interrogation Forms", "Daniel's Interrogation Forms", "Jamie's Interrogation Forms", "Michelle's Interrogation Forms", "Suspect Board"],
-        answer: 2,
-        isDisplayed: true
-    }, {
-        question: "Where was the needle located before it poked Theo?",
-        options: ["Theo's button", "Michelle's pocket", "tennis ball", "John's solarium"],
-        answer: 2,
-        isDisplayed: true
-    }],
-    [{
         question: "Who killed Sheila?",
         options: ["Sonny", "Shane", "Stella", "Jason", "Jane"],
         answer: 3,
         isDisplayed: true
     }, {
-        question: "What's suspicious about Stella?",
-        options: ["She likes grandma", "She hates grandma", "She threw up"],
+        question: "Why did he/she kill Sheila?",
+        options: ["he/she hated that Stella is unhappy", "he/she was never paid attention by Sheila", "he/she wanted the museum", "he/she wanted Sheila to be quiet"],
+        answer: 0,
+        isDisplayed: true
+    },
+    {
+        question: "What does the note on napkin say?",
+        options: ["kick us at the upper deck s and i will tell you about the casse", "that us at the upper boat s and i will tell you about the baby", "meet us at the upper deck i and u will tell you about the work", "meet us at the upper deck s and i will tell you about the baby"],
+        answer: 3,
+        isDisplayed: true
+    }, {
+        question: "What does the card in Sheila's room say?",
+        options: ["I am sorry I want to be part of your family", "I am sad I want to be part of your family", "I apologize I want to be part of your family", "I hateyou I do not want to be with you"],
         answer: 2,
         isDisplayed: true
-    }]
+    },
+    {
+        question: "What does the letter in Sheila's pocket say?",
+        options: ["I am her brother and I love her I will marry her", "I am her brother and I love her I will murry her", "I am her brother and I love her I will mirry her", "I am her brother and I love her I will merry her"],
+        answer: 0,
+        isDisplayed: true
+    },
+    {
+        question: "How did he/she do it?",
+        options: ["gave her a note at the bar and asked her to go to upper deck then pushed her", "made her drunk at the bar then pushed her off to the ocean", "poisoned her during dinner and hid her in the bathroom", "worked together with the bartender to put sleeping pill in her drink then tossed her into the ocean"],
+        answer: 0,
+        isDisplayed: true
+    },
+]
 ]
 
 
