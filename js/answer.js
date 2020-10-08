@@ -114,7 +114,7 @@ function questionRendered() {
 
         } else {
             $("#options").empty();
-            $("#question").html("Sorry you are incorrect. Please try again!")
+            $("#question").html("Sorry you guess this particular question incorrectly. Please try again!")
         }
     })
 
