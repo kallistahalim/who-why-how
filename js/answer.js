@@ -13,26 +13,30 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var firebaseNumber;
+var firebaseNumber = [];
 var a;
 var i = 0;
+var agentNumber = 0;
 
 firebase.database().ref().on("value", function (snapshot) {
     for (var b = 0; b < snapshot.val().user.order.length; b++) {
-        console.log(snapshot.val().user.order[b].ID);
-        firebaseNumber = snapshot.val().user.order[b].ID;
+        n = snapshot.val().user.order[b].ID.toString();
+        firebaseNumber.push(n);
         a = snapshot.val().user.order[b].case;
-        console.log(a);
+
     }
 })
 
 
 //submit button for ID submission
 $("#submit").on("click", function () {
-    var agentNumber = $("#agent-number").val();
+    agentNumber = $("#agent-number").val();
     $("#id-number").empty();
+    console.log(firebaseNumber);
+    console.log(agentNumber);  
+    console.log(firebaseNumber.includes(agentNumber));
 
-    if (agentNumber == firebaseNumber) {
+    if (firebaseNumber.includes(agentNumber) === true) {
         questionRendered();
     } else {
         $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
