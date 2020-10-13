@@ -29,11 +29,17 @@
     ]
   },
   "user": {
-    "order": {
+    "order": [{
       "ID": 19526700,
       "case": 0,
       "name": "Kallista Halim"
+    },
+    {
+      "ID": 782352520,
+      "case": 0,
+      "name": "Jessica Febriani"
     }
+  ]
   },
   "prize": [{
       "item": "1 Pao De Queijo from Borrowed Oven",

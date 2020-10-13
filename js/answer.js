@@ -18,18 +18,18 @@ var a;
 var i = 0;
 
 firebase.database().ref().on("value", function (snapshot) {
-    console.log(snapshot.val());
-    firebaseNumber = snapshot.val().user.order.ID;
-    a = snapshot.val().user.order.case;
-    console.log(a);
+    for (var b = 0; b < snapshot.val().user.order.length; b++) {
+        console.log(snapshot.val().user.order[b].ID);
+        firebaseNumber = snapshot.val().user.order[b].ID;
+        a = snapshot.val().user.order[b].case;
+        console.log(a);
+    }
 })
 
 
 //submit button for ID submission
 $("#submit").on("click", function () {
-    console.log(firebaseNumber);
     var agentNumber = $("#agent-number").val();
-    console.log(agentNumber);
     $("#id-number").empty();
 
     if (agentNumber == firebaseNumber) {
