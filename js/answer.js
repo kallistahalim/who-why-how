@@ -81,6 +81,7 @@ function randomPrize() {
     var decision = prize[Math.floor(Math.random()* prize.length)];
     console.log(decision);
     $("#options").html("You have won " + decision);
+    $()
 
 }
 
