@@ -1,0 +1,111 @@
+{
+  "content": {
+    "cases": [
+      [{
+        "answer": 3,
+        "options": ["Sonny", "Shane", "Stella", "Jason", "Jane"],
+        "question": "Who killed Sheila?"
+      }, {
+        "answer": 0,
+        "options": ["he/she hated that Stella is unhappy", "he/she was never paid attention by Sheila", "he/she wanted the museum", "he/she wanted Sheila to be quiet"],
+        "question": "Why did he/she kill Sheila?"
+      }, {
+        "answer": 3,
+        "options": ["kick us at the upper deck s and i will tell you about the casse", "that us at the upper boat s and i will tell you about the baby", "meet us at the upper deck i and u will tell you about the work", "meet us at the upper deck s and i will tell you about the baby"],
+        "question": "What does the note on napkin say?"
+      }, {
+        "answer": 2,
+        "options": ["I am sorry I want to be part of your family", "I am sad I want to be part of your family", "I apologize I want to be part of your family", "I hateyou I do not want to be with you"],
+        "question": "What does the card in Sheila's room say?"
+      }, {
+        "answer": 1,
+        "options": ["I am her brother and I love her I will marry her", "I am her brother and I love her I will murry her", "I am her brother and I love her I will mirry her", "I am her brother and I love her I will merry her"],
+        "question": "What does the letter in Sheila's pocket say?"
+      }, {
+        "answer": 0,
+        "options": ["gave her a note at the bar and asked her to go to upper deck then pushed her", "made her drunk at the bar then pushed her off to the ocean", "poisoned her during dinner and hid her in the bathroom", "worked together with the bartender to put sleeping pill in her drink then tossed her into the ocean"],
+        "question": "How did he/she do it?"
+      }]
+    ]
+  },
+  "user": {
+    "order": {
+      "ID": 19526700,
+      "case": 0,
+      "name": "Kallista Halim"
+    }
+  },
+  "prize": [{
+      "item": "1 Pao De Queijo from Borrowed Oven",
+      "image": "./assets/prize/BOFREE.png"
+    },
+    {
+      "item": "50% off Borrowed Oven",
+      "image": "./assets/prize/BO50.png"
+    },
+    {
+      "item": "50% off Borrowed Oven",
+      "image": "./assets/prize/BO50.png"
+    },
+    {
+      "item": "50% off Borrowed Oven",
+      "image": "./assets/prize/BO50.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "25% off Borrowed Oven",
+      "image": "./assets/prize/BO25.png"
+    },
+    {
+      "item": "One Free Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWHFREE.png"
+    },
+    {
+      "item": "50% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH50.png"
+    },
+    {
+      "item": "50% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH50.png"
+    },
+    {
+      "item": "25% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH25.png"
+    },
+    {
+      "item": "25% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH25.png"
+    },
+    {
+      "item": "25% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH25.png"
+    },
+    {
+      "item": "25% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH25.png"
+    },
+    {
+      "item": "25% off Mystery Game from Who-Why-How",
+      "image": "./assets/prize/WWH25.png"
+    }
+  ]
+}

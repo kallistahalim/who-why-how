@@ -9,11 +9,54 @@ body {
         background-repeat: no-repeat;
         background-attachment: scroll;
         background-size: cover;
+        font-family: 'Playfair Display', serif;
+}
+
+nav {
+    font-family: 'Playfair Display', serif;
 }
 
 #h1-id-number, #question, #options{
     font-style: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     align-self: center;
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
     
+}
+
+#decision-image {
+    height: 350px;
+}
+
+#content, #id-number{
+    text-align : center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+}
+
+#submit, #agent-number{
+    background-color: black;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    padding: 10px;
+}
+
+.question-button {
+    background-color: black;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+    font-family: 'Playfair Display', serif;
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
+}
+
+#question, #options {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Playfair Display', serif;
+    padding: 10px;
+    margin: 10px;
+    font-size: 30px;
 }
