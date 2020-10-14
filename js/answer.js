@@ -17,42 +17,16 @@ var firebaseNumber = [];
 var a;
 var i = 0;
 var agentNumber = 0;
+var isFinished;
 
 firebase.database().ref().on("value", function (snapshot) {
     for (var b = 0; b < snapshot.val().user.order.length; b++) {
         n = snapshot.val().user.order[b].ID.toString();
         firebaseNumber.push(n);
         a = snapshot.val().user.order[b].case;
-
+        isFinished = snapshot.val().user.order[b].isFinished;
     }
 })
-
-
-//submit button for ID submission
-$("#submit").on("click", function () {
-    agentNumber = $("#agent-number").val();
-    $("#id-number").empty();
-    console.log(firebaseNumber);
-    console.log(agentNumber);  
-    console.log(firebaseNumber.includes(agentNumber));
-
-    if (firebaseNumber.includes(agentNumber) === true) {
-        questionRendered();
-    } else {
-        $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
-    }
-})
-
-function randomPrize() {
-    firebase.database().ref().on("value", function (snapshot) {
-        prize = snapshot.val().prize;
-        var decision = prize[Math.floor(Math.random() * prize.length)].item;
-        var decisionImage = prize[Math.floor(Math.random() * prize.length)].image;
-        console.log(decisionImage);
-        $("#options").html("You have won " + decision);
-        $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
-    })
-}
 
 //render questions
 function questionRendered() {
@@ -60,11 +34,18 @@ function questionRendered() {
         console.log(i)
         console.log(snapshot.val().content.cases[a].length)
 
-        if (i >= snapshot.val().content.cases[a].length) {
+        if (i >= snapshot.val().content.cases[a].length && isFinished === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
             randomPrize();
+            firebase.database().ref().push({
+                isFinished: true
+            });
             return;
+        } else if (i >= snapshot.val().content.cases[a].length && isFinished === true) {
+            $("#options").empty();
+            $("#question").html("Congratulation! You already cracked the case and received a prize!!");
+
         } else {
             //print question
             questionPrinted = snapshot.val().content.cases[a][i].question;
@@ -93,4 +74,31 @@ function questionRendered() {
         })
     })
 
+}
+
+
+//submit button for ID submission
+$("#submit").on("click", function () {
+    agentNumber = $("#agent-number").val();
+    $("#id-number").empty();
+    console.log(firebaseNumber);
+    console.log(agentNumber);
+    console.log(firebaseNumber.includes(agentNumber));
+
+    if (firebaseNumber.includes(agentNumber) === true) {
+        questionRendered();
+    } else {
+        $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
+    }
+})
+
+function randomPrize() {
+    firebase.database().ref().on("value", function (snapshot) {
+        prize = snapshot.val().prize;
+        var decision = prize[Math.floor(Math.random() * prize.length)].item;
+        var decisionImage = prize[Math.floor(Math.random() * prize.length)].image;
+        console.log(decisionImage);
+        $("#options").html("You have won " + decision);
+        $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
+    })
 }
