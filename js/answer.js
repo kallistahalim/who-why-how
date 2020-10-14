@@ -19,25 +19,25 @@ var agentNumber = 0;
 var isSucceeded;
 
 
-firebase.database().ref().on("value", function (snapshot) {
-        //submit button for ID submission
-        $("#submit").on("click", function () {
-            agentNumber = parseInt($("#agent-number").val());
-            $("#id-number").empty();
-            if (snapshot.val().user.order[agentNumber] == undefined) {
-                $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
-            } else {
-                a = snapshot.val().user.order[agentNumber].case;
-                isSucceeded = snapshot.val().user.order[agentNumber].isSucceeded;
-                questionRendered();
-            }
-        })
+firebase.database().ref().once("value").then(function (snapshot) {
+    //submit button for ID submission
+    $("#submit").on("click", function () {
+        agentNumber = parseInt($("#agent-number").val());
+        $("#id-number").empty();
+        if (snapshot.val().user.order[agentNumber] == undefined) {
+            $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
+        } else {
+            a = snapshot.val().user.order[agentNumber].case;
+            isSucceeded = snapshot.val().user.order[agentNumber].isSucceeded;
+            questionRendered();
+        }
     })
+})
 
 //render questions
 function questionRendered() {
-    firebase.database().ref().on("value", function (snapshot) {
-console.log(isSucceeded, i, snapshot.val().content.cases[a], snapshot.val().content.cases[a].length, isSucceeded === false);
+    firebase.database().ref().once("value").then(function (snapshot) {
+        console.log(isSucceeded, i, snapshot.val().content.cases[a], snapshot.val().content.cases[a].length, isSucceeded === false);
         if (i >= snapshot.val().content.cases[a].length && isSucceeded === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
@@ -81,7 +81,7 @@ console.log(isSucceeded, i, snapshot.val().content.cases[a], snapshot.val().cont
 }
 
 function randomPrize() {
-    firebase.database().ref().on("value", function (snapshot) {
+    firebase.database().ref().once("value").then(function (snapshot) {
         prize = snapshot.val().prize;
         p = Math.floor(Math.random() * prize.length)
         var decision = prize[p].item;
@@ -89,7 +89,7 @@ function randomPrize() {
         $("#options").html("You have won " + decision);
         $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
         firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
-            prize : decision
+            prize: decision
         });
     })
 }
