@@ -17,32 +17,31 @@ var firebaseNumber = [];
 var a;
 var i = 0;
 var agentNumber = 0;
-var isFinished;
+var isSucceeded;
 
 firebase.database().ref().on("value", function (snapshot) {
     for (var b = 0; b < snapshot.val().user.order.length; b++) {
         n = snapshot.val().user.order[b].ID.toString();
         firebaseNumber.push(n);
         a = snapshot.val().user.order[b].case;
-        isFinished = snapshot.val().user.order[b].isFinished;
+        isSucceeded= snapshot.val().user.order[b].isSucceeded;
+        console.log(isSucceeded);
     }
 })
 
 //render questions
 function questionRendered() {
     firebase.database().ref().on("value", function (snapshot) {
-        console.log(i)
-        console.log(snapshot.val().content.cases[a].length)
 
-        if (i >= snapshot.val().content.cases[a].length && isFinished === false) {
+        if (i >= snapshot.val().content.cases[a].length && isSucceeded === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
             randomPrize();
-            firebase.database().ref().push({
-                isFinished: true
+            firebase.database().ref().set({
+                isSucceeded: true
             });
             return;
-        } else if (i >= snapshot.val().content.cases[a].length && isFinished === true) {
+        } else if (i >= snapshot.val().content.cases[a].length && isSucceeded === true) {
             $("#options").empty();
             $("#question").html("Congratulation! You already cracked the case and received a prize!!");
 
@@ -81,9 +80,6 @@ function questionRendered() {
 $("#submit").on("click", function () {
     agentNumber = $("#agent-number").val();
     $("#id-number").empty();
-    console.log(firebaseNumber);
-    console.log(agentNumber);
-    console.log(firebaseNumber.includes(agentNumber));
 
     if (firebaseNumber.includes(agentNumber) === true) {
         questionRendered();
