@@ -23,14 +23,13 @@ firebase.database().ref().on("value", function (snapshot) {
         //submit button for ID submission
         $("#submit").on("click", function () {
             agentNumber = parseInt($("#agent-number").val());
-            a = snapshot.val().user.order[agentNumber].case;
-            isSucceeded = snapshot.val().user.order[agentNumber].isSucceeded;
             $("#id-number").empty();
-            if (snapshot.val().user.order[agentNumber] === undefined) {
+            if (snapshot.val().user.order[agentNumber] == undefined) {
                 $("#question").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
             } else {
+                a = snapshot.val().user.order[agentNumber].case;
+                isSucceeded = snapshot.val().user.order[agentNumber].isSucceeded;
                 questionRendered();
-               
             }
         })
 
