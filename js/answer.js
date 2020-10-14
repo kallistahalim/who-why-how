@@ -32,15 +32,12 @@ firebase.database().ref().on("value", function (snapshot) {
                 questionRendered();
             }
         })
-
-
-
     })
 
 //render questions
 function questionRendered() {
     firebase.database().ref().on("value", function (snapshot) {
-
+console.log(isSucceeded, i, snapshot.val().content.cases[a], snapshot.val().content.cases[a].length, isSucceeded === false);
         if (i >= snapshot.val().content.cases[a].length && isSucceeded === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
@@ -83,13 +80,16 @@ function questionRendered() {
 
 }
 
-
 function randomPrize() {
     firebase.database().ref().on("value", function (snapshot) {
         prize = snapshot.val().prize;
-        var decision = prize[Math.floor(Math.random() * prize.length)].item;
-        var decisionImage = prize[Math.floor(Math.random() * prize.length)].image;
+        p = Math.floor(Math.random() * prize.length)
+        var decision = prize[p].item;
+        var decisionImage = prize[p].image;
         $("#options").html("You have won " + decision);
         $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
+        firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
+            prize : decision
+        });
     })
 }
