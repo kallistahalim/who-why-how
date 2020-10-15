@@ -18,7 +18,6 @@ var i = 0;
 var agentNumber = 0;
 var isSucceeded;
 
-
 firebase.database().ref().once("value").then(function (snapshot) {
     //submit button for ID submission
     $("#submit").on("click", function () {
@@ -37,7 +36,7 @@ firebase.database().ref().once("value").then(function (snapshot) {
 //render questions
 function questionRendered() {
     firebase.database().ref().once("value").then(function (snapshot) {
-        console.log(isSucceeded, i, snapshot.val().content.cases[a], snapshot.val().content.cases[a].length, isSucceeded === false);
+
         if (i >= snapshot.val().content.cases[a].length && isSucceeded === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
