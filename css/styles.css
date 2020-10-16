@@ -10377,6 +10377,11 @@ body {
   width: 75px;
 }
 
+#prize-image {
+  width : 500px;
+  margin : 25px;
+}
+
 .how-to-order {
   text-align : center;
 }
