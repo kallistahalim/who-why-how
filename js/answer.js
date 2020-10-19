@@ -40,7 +40,7 @@ function questionRendered() {
         if (i >= snapshot.val().content.cases[a].length && isSucceeded === false) {
             $("#options").empty();
             $("#question").html("Congratulation! You won!!");
-            randomPrize();
+            showPrizes();
             firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
                 isSucceeded: true
             });
@@ -48,7 +48,7 @@ function questionRendered() {
         } else if (i >= snapshot.val().content.cases[a].length && isSucceeded === true) {
             $("#options").empty();
             $("#question").html("Congratulation! You already cracked the case and received a prize!!");
-
+            return;
         } else {
             //print question
             questionPrinted = snapshot.val().content.cases[a][i].question;
@@ -79,16 +79,33 @@ function questionRendered() {
 
 }
 
-function randomPrize() {
+function showPrizes() {
     firebase.database().ref().once("value").then(function (snapshot) {
-        prize = snapshot.val().prize;
-        p = Math.floor(Math.random() * prize.length)
-        var decision = prize[p].item;
-        var decisionImage = prize[p].image;
-        $("#options").html("You have won " + decision);
-        $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
-        firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
-            prize: decision
+        for (var i = 0; i < snapshot.val().prize.length; i++) {
+            var c = $("<button>");
+            c.addClass("prize-button");
+            c.attr("data-let", snapshot.val().prize[i].image);
+            c.html("<img id='decision-image' src=./" + snapshot.val().prize[i].image + ">");
+            $("#prize").append(c);
+        }
+        $("#options").html("Please pick your prize by clicking the prize you like!");
+
+        $(".prize-button").on("click", function () {
+            console.log("this is let" + $(this).data("let"));
+            firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
+                prize: $(this).data("let")
+            });
+            
+            $("#options").html("Congratulation. Please show this voucher to our vendor and mention your ID number :)");
+            $("#prize").html("<img id='prize-pick-image' src=./" + $(this).data("let") + ">");
+
         });
+        // var decision = prize[p].item;
+        // var decisionImage = prize[p].image;
+
+        // $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
+        // firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
+        //     prize: decision
+        // });
     })
 }
