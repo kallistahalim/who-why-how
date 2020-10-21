@@ -24,7 +24,7 @@ nav {
 }
 
 #decision-image {
-    height: 200px;
+    height: 200px !important;
 }
 
 #prize-pick-image {
