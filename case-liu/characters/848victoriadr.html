@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Case - Liu</title>
+</head>
+
+<body>
+    <p>Boris</p>
+    <audio id="myAudioBoris">
+        <source src="boris.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <button onclick="playAudioBoris()" type="button">Play Audio</button>
+    <button onclick="pauseAudioBoris()" type="button">Pause Audio</button>
+
+    <p>Marko</p>
+    <audio id="myAudioMarko">
+        <source src="marko.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <button onclick="playAudioMarko()" type="button">Play Audio</button>
+    <button onclick="pauseAudioMarko()" type="button">Pause Audio</button>
+
+
+    <script>
+        var x = document.getElementById("myAudioBoris");
+
+        function playAudioBoris() {
+            x.controls = true;
+            x.play();
+        }
+
+        function pauseAudioBoris() {
+            x.pause();
+        }
+
+        var y = document.getElementById("myAudioMarko");
+
+        function playAudioMarko() {
+            y.controls = true;
+            y.play();
+        }
+
+        function pauseAudioMarko() {
+            y.pause();
+        }
+    </script>
+
+</body>
+
+</html>

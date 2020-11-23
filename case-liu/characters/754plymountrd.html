@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Case - Liu</title>
+</head>
+
+<body>
+    <p>Pierre</p>
+    <audio id="myAudioPierre">
+        <source src="pierre.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <button onclick="playAudioPierre()" type="button">Play Audio</button>
+    <button onclick="pauseAudioPierre()" type="button">Pause Audio</button>
+
+    <script>
+        var x = document.getElementById("myAudioPierre");
+
+        function playAudioPierre() {
+            x.controls = true;
+            x.play();
+        }
+
+        function pauseAudioPierre() {
+            x.pause();
+        }
+
+    </script>
+
+</body>
+
+</html>
