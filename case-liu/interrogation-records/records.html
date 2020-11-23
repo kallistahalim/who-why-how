@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Case - Liu</title>
+</head>
+
+<body>
+    <p>Nadia</p>
+    <audio id="myAudioNadia">
+        <source src="nadia.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <button onclick="playAudioNadia()" type="button">Play Audio</button>
+    <button onclick="pauseAudioNadia()" type="button">Pause Audio</button>
+
+    <p>Sophie</p>
+    <audio id="myAudioSophie">
+        <source src="lukas.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <br>
+    <button onclick="playAudioSophie()" type="button">Play Audio</button>
+    <button onclick="pauseAudioSophie()" type="button">Pause Audio</button>
+
+    <p>Lukas</p>
+    <audio id="myAudioLukas">
+        <source src="lukas.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <br>
+    <button onclick="playAudioLukas()" type="button">Play Audio</button>
+    <button onclick="pauseAudioLukas()" type="button">Pause Audio</button>
+
+    <p>Kyle</p>
+    <audio id="myAudioKyle">
+        <source src="kyle.m4a" type="audio/ogg">
+        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    </audio>
+    <br>
+    <button onclick="playAudioKyle()" type="button">Play Audio</button>
+    <button onclick="pauseAudioKyle()" type="button">Pause Audio</button>
+
+    <script>
+        var x = document.getElementById("myAudioNadia");
+
+        function playAudioNadia() {
+            x.controls = true;
+            x.play();
+        }
+
+        function pauseAudioNadia() {
+            x.pause();
+        }
+
+        var y = document.getElementById("myAudioSophie");
+
+        function playAudioSophie() {
+            y.controls = true;
+            y.play();
+        }
+
+        function pauseAudioSophie() {
+            y.pause();
+        }
+
+
+
+        var z = document.getElementById("myAudioLukas");
+
+        function playAudioLukas() {
+            z.controls = true;
+            z.play();
+        }
+
+        function pauseAudioLukas() {
+            z.pause();
+        }
+
+
+
+        var a = document.getElementById("myAudioKyle");
+
+        function playAudioKyle() {
+            a.controls = true;
+            a.play();
+        }
+
+        function pauseAudioKyle() {
+            a.pause();
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
