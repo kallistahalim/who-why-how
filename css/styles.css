@@ -473,10 +473,6 @@ mark,
   content: "— ";
 }
 
-.case-liu-cover {
-    height: auto !important;
-}
-
 .img-fluid {
   max-width: 100% !important;
   height: 100% !important;
