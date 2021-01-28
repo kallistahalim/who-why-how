@@ -5,3 +5,21 @@
 #top-image {
     text-align: center;
 }
+
+.game-button {
+    text-align: center;
+    border: none;
+    width: 10%;
+    height: 10%;
+    background-color: transparent;
+    margin:5%;
+
+}
+
+img {
+    width: 75%;
+}
+
+#image-options {
+    margin : 5%;
+}
