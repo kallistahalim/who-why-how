@@ -100,12 +100,6 @@ function showPrizes() {
             $("#prize").html("<img id='prize-pick-image' src=./" + $(this).data("let") + ">");
 
         });
-        // var decision = prize[p].item;
-        // var decisionImage = prize[p].image;
 
-        // $("#prize").html("<img id='decision-image' src=./" + decisionImage + ">");
-        // firebase.database().ref('/user/order/' + [agentNumber] + '/').update({
-        //     prize: decision
-        // });
     })
 }
