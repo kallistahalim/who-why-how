@@ -83,14 +83,12 @@ function startGameA() {
         function playerAImage() {
             for (var j = 0; j < playerA.length; j++) {
                 $("#top-image").html("<img class = 'game-image' src=" + playerA[j] + ".png>");
+                setTimeout(emptyDiv, 3000);
             }
         }
 
         $("#top-image").ready(function () {
             setTimeout(playerAImage, 3000);
-            if (setTimeout(playerAImage, 3000)) {
-                setTimeout(emptyDiv, 3000);
-            }
 
         })
         
