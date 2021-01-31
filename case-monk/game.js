@@ -13,6 +13,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+var AorB;
+
 firebase.database().ref().once("value").then(function (snapshot) {
 
     $("#submit").on("click", function () {
@@ -21,7 +23,13 @@ firebase.database().ref().once("value").then(function (snapshot) {
         if (snapshot.val().user.order[gameID] == undefined) {
             $("image-buttons").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
         } else {
-            startGame();
+            AorB = snapshot.val().order[gameID].AorB;
+            if (AorB === "A") {
+                startGameA();
+            } else {
+                startGameB();
+            }
+            
         }
 
     })
@@ -48,10 +56,10 @@ for (var i = 0; i < iconOptions.length; i++) {
 
 //render game
 
-var i = 0;
+var i = 0; 
 
 function startGame() {
-    if (i)
+    if (i >= playerA.length)
 
 }
 
