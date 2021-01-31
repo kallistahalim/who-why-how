@@ -58,8 +58,11 @@ for (var i = 0; i < iconOptions.length; i++) {
 
 var i = 0; 
 
-function startGame() {
-    if (i >= playerA.length)
+function startGameA() {
+    if (i >= playerA.length) {
+        $("#top-image").empty();
+        $("#image-buttons").html("Open __________");
+    }
 
 }
 
