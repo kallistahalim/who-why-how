@@ -47,7 +47,7 @@ var playerA = [iconOptions[3], iconOptions[1], iconOptions[2], iconOptions[8], i
 //images shown for player B
 var playerB = [iconOptions[0], iconOptions[7], iconOptions[9], iconOptions[6], iconOptions[3], iconOptions[7], iconOptions[8], iconOptions[1], iconOptions[5], iconOptions[4]];
 
-var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9],iconOptions[2], iconOptions[6], iconOptions[8],iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8],iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
+var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9], iconOptions[2], iconOptions[6], iconOptions[8], iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8], iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
 
 
 //render game
@@ -57,49 +57,48 @@ var a = 0;
 function startGameA() {
     $("#image-buttons").empty();
 
-    //print out image buttons
-    for (var i = 0; i < iconOptions.length; i++) {
-        var button = $("<button>");
-        button.addClass("game-button");
-        button.attr("data-let", (i));
-        button.html("<img src =" + iconOptions[i] + ".png>");
-        $("#image-buttons").append(button);
-    }
-
     //game is done
     if (a >= playerA.length - 1) {
         $("#top-image").empty();
         $("#image-buttons").html("Open __________");
         return;
 
-        //game starts and continue
+    //game starts and continue
     } else {
 
+        //print out image buttons
+        for (var i = 0; i < iconOptions.length; i++) {
+            var button = $("<button>");
+            button.addClass("game-button");
+            button.attr("data-let", (i));
+            button.html("<img src =" + iconOptions[i] + ".png>");
+            $("#image-buttons").append(button);
+        }
+
+        //PLAYER A
         //emptyDiv
         function emptyDiv() {
             $("#top-image").empty();
-
-            if()
             a++;
             console.log(a);
             startGameA();
         }
 
-        //player A
+        //player A top image
         function playerAImage() {
             $("#top-image").html("<img class = 'game-image' src=" + playerA[a] + ".png>");
             setTimeout(emptyDiv, 3000);
 
-            
         }
-
         $("#top-image").ready(function () {
             setTimeout(playerAImage, 3000);
 
         })
 
+        //player A image buttons
+        
+
     }
 
 
 }
-
