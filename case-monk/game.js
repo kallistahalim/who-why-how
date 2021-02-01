@@ -84,6 +84,7 @@ function startGameA() {
             for (var j = 0; j < playerA.length; j++) {
                 $("#top-image").html("<img class = 'game-image' src=" + playerA[j] + ".png>");
                 setTimeout(emptyDiv, 3000);
+                j++;
             }
         }
 
@@ -93,6 +94,5 @@ function startGameA() {
         })
         
     }
-
 
 }
