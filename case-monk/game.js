@@ -54,7 +54,7 @@ var a = 0;
 
 //how playerA starts
 function startGameA() {
-    console.log(a);
+    $("#image-buttons").empty();
 
     //print out image buttons
     for (var i = 0; i < iconOptions.length; i++) {
@@ -66,7 +66,7 @@ function startGameA() {
     }
 
     //game is done
-    if (a >= playerA.length) {
+    if (a >= playerA.length - 1) {
         $("#top-image").empty();
         $("#image-buttons").html("Open __________");
         return;
@@ -77,22 +77,26 @@ function startGameA() {
         //emptyDiv
         function emptyDiv() {
             $("#top-image").empty();
+            a++;
+            console.log(a);
+            startGameA();
         }
 
         //player A
         function playerAImage() {
-            for (var j = 0; j < playerA.length; j++) {
-                $("#top-image").html("<img class = 'game-image' src=" + playerA[j] + ".png>");
-                setTimeout(emptyDiv, 3000);
-                j++;
-            }
+            $("#top-image").html("<img class = 'game-image' src=" + playerA[a] + ".png>");
+            setTimeout(emptyDiv, 3000);
+
+            
         }
 
         $("#top-image").ready(function () {
             setTimeout(playerAImage, 3000);
 
         })
-        
+
     }
 
+
 }
+
