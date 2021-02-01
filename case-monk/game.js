@@ -47,6 +47,7 @@ var playerA = [iconOptions[3], iconOptions[1], iconOptions[2], iconOptions[8], i
 //images shown for player B
 var playerB = [iconOptions[0], iconOptions[7], iconOptions[9], iconOptions[6], iconOptions[3], iconOptions[7], iconOptions[8], iconOptions[1], iconOptions[5], iconOptions[4]];
 
+var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9],iconOptions[2], iconOptions[6], iconOptions[8],iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8],iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
 
 
 //render game
@@ -77,6 +78,8 @@ function startGameA() {
         //emptyDiv
         function emptyDiv() {
             $("#top-image").empty();
+
+            if()
             a++;
             console.log(a);
             startGameA();
