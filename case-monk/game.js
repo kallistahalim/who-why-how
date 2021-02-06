@@ -41,14 +41,17 @@ firebase.database().ref().once("value").then(function (snapshot) {
 //images submitted
 var iconOptions = ["./icon/1", "./icon/2", "./icon/3", "./icon/4", "./icon/5", "./icon/6", "./icon/7", "./icon/8", "./icon/9", "./icon/10"];
 
-//images shown for player A
-var playerA = [iconOptions[3], iconOptions[1], iconOptions[2], iconOptions[8], iconOptions[5], iconOptions[0], iconOptions[4], iconOptions[6], iconOptions[9], iconOptions[2]];
-
-//images shown for player B
-var playerB = [iconOptions[0], iconOptions[7], iconOptions[9], iconOptions[6], iconOptions[3], iconOptions[7], iconOptions[8], iconOptions[1], iconOptions[5], iconOptions[4]];
-
 var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9], iconOptions[2], iconOptions[6], iconOptions[8], iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8], iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
 
+var playerA = [];
+var playerB = [];
+for (var i = 0; i < listOfClick.length; i++) {
+  if (i % 2 === 0) {
+    playerA.push(listOfClick[i]);
+  } else {
+    playerB.push(listOfClick[i]);
+  }
+}
 
 //render game
 var a = 0;
@@ -96,7 +99,19 @@ function startGameA() {
         })
 
         //player A image buttons
-        
+        function stopTheGame() {
+            $("#top-image", "#image-options").empty();
+            alert("You are not doing it right!");
+        }
+
+         var b = 0;
+
+        if(listOfClick[b].clicked === false) {
+            stopTheGame()
+        }
+
+
+
 
     }
 
