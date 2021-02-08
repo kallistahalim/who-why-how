@@ -123,7 +123,7 @@ function showImage() {
 function failed() {
     // TODO Show a message if you want to, and then restart the game
     alert("you are not doing it right!");
-    return;
+    restartGame();
 
 }
 
