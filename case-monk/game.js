@@ -46,15 +46,18 @@ var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1
 var playerA = [];
 var playerB = [];
 for (var i = 0; i < listOfClick.length; i++) {
-  if (i % 2 === 0) {
-    playerA.push(listOfClick[i]);
-  } else {
-    playerB.push(listOfClick[i]);
-  }
+    if (i % 2 === 0) {
+        playerA.push(listOfClick[i]);
+    } else {
+        playerB.push(listOfClick[i]);
+    }
 }
 
 //render game
 var a = 0;
+var expectedButtonIndex = 0;
+var failureTimer;
+
 
 //how playerA starts
 function startGameA() {
@@ -66,7 +69,7 @@ function startGameA() {
         $("#image-buttons").html("Open __________");
         return;
 
-    //game starts and continue
+        //game starts and continue
     } else {
 
         //print out image buttons
@@ -78,100 +81,65 @@ function startGameA() {
             $("#image-buttons").append(button);
         }
 
-        //PLAYER A
-        //emptyDiv
-        function emptyDiv() {
-            $("#top-image").empty();
-            a++;
-            console.log(a);
-            startGameA();
-        }
-
-        //player A top image
-        function playerAImage() {
-            $("#top-image").html("<img class = 'game-image' src=" + playerA[a] + ".png>");
-            setTimeout(emptyDiv, 3000);
-
-        }
-        $("#top-image").ready(function () {
-            setTimeout(playerAImage, 3000);
-
-        })
-
-        //player A image buttons
-        function stopTheGame() {
-            $("#top-image", "#image-options").empty();
-            alert("You are not doing it right!");
-        }
-
-         var b = 0;
-
-        if(listOfClick[b].clicked === false) {
-            stopTheGame()
-        }
-
-
-
+        showImage();
 
     }
 
 
 }
 
-var expectedButtonIndex = 0;
-var failureTimer;
- 
-function restartGame() {
-  // Just set the button index to the beginning and call the function for showing the image
-  expectedButtonIndex = 0;
-  showImage();
-}
- 
 function showImage() {
-  // Something like if it's an even index, show image, otherwise show blank?
-  // This will make it easy to alternate images and blanks one after the other
-  if (expectedButtonIndex % 2 === 0) {
-    // Show image
-    $("#top-image").html("<img class = 'game-image' src=" + playerA[expectedButtonIndex] + ".png>");
-  } else {
-    // Show blank
-    $("#top-image").empty();
-  }
- 
-  // Start the timer for the game to fail in 3 seconds if the user doesn't do anything
-  // If they do click a button, we have the onClick code below which will either
-  //   a) Stop this timer if they made the correct choice
-  //   b) End the game if they clicked the correct one
-  failureTimer = setTimeout(timeExpired, 3000)
-}
- 
-function failed() {
-  // TODO Show a message if you want to, and then restart the game
-  alert("you are not doing it right!");
-  restartGame();
-}
- 
-button.onClick() {
-  // Whether this is correct or not, we don't need the failure timer
-  clearTimeout(failureTimer);
- 
-  var buttonThatWasClicked = ...;
-  if (buttonThatWasClicked == buttons[expectedButtonIndex]) {
-    //Prepare for showing the next image/blank
-    expectedButtonIndex++;
- 
-    // If we don't have anything to show, we are done
-    if (expectedButtonIndex > totalButtons) {
-      // TODO Successfully completed the game
-      return;
+    // Something like if it's an even index, show image, otherwise show blank?
+    // This will make it easy to alternate images and blanks one after the other
+    if (expectedButtonIndex % 2 === 0) {
+        // Show image
+        $("#top-image").html("<img class = 'game-image' src=" + playerA[expectedButtonIndex] + ".png>");
+    } else {
+        // Show blank
+        $("#top-image").empty();
     }
- 
-    // If we do have more images, show it now
-    showImage();
-  } else {
-    // Clicked the wrong button, that's a failure similarly to 3secs expiring
-    failed();
-  }
+
+    // Start the timer for the game to fail in 3 seconds if the user doesn't do anything
+    // If they do click a button, we have the onClick code below which will either
+    //   a) Stop this timer if they made the correct choice
+    //   b) End the game if they clicked the correct one
+    failureTimer = setTimeout(timeExpired, 3000);
 }
- 
-restartGame();
+
+// function restartGame() {
+//     // Just set the button index to the beginning and call the function for showing the image
+//     expectedButtonIndex = 0;
+//     showImage();
+// }
+
+
+// function failed() {
+//     // TODO Show a message if you want to, and then restart the game
+//     alert("you are not doing it right!");
+//     restartGame();
+// }
+
+// button.onClick() {
+//     // Whether this is correct or not, we don't need the failure timer
+//     clearTimeout(failureTimer);
+
+//     var buttonThatWasClicked = ...;
+//     if (buttonThatWasClicked == buttons[expectedButtonIndex]) {
+//         //Prepare for showing the next image/blank
+//         expectedButtonIndex++;
+
+//         // If we don't have anything to show, we are done
+//         if (expectedButtonIndex > totalButtons) {
+//             // TODO Successfully completed the game
+//             return;
+//         }
+
+//         // If we do have more images, show it now
+//         showImage();
+//     } else {
+//         // Clicked the wrong button, that's a failure similarly to 3secs expiring
+//         failed();
+//     }
+// }
+
+// restartGame();
