@@ -16,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 var AorB;
 
 firebase.database().ref().once("value").then(function (snapshot) {
+    console.log(snapshot.val());
 
     $("#submit").on("click", function () {
         gameID = $("#game-id-input").val();
@@ -43,6 +44,9 @@ var iconOptions = ["./icon/1", "./icon/2", "./icon/3", "./icon/4", "./icon/5", "
 
 var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9], iconOptions[2], iconOptions[6], iconOptions[8], iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8], iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
 
+var numberIndexForIcons = [0, 3, 7, 1, 9, 2, 6, 8, 3, 5, 7, 0, 8, 4, 1, 6, 5, 9, 4, 2]
+
+
 var playerA = [];
 var playerB = [];
 for (var i = 0; i < listOfClick.length; i++) {
@@ -60,6 +64,7 @@ console.log(playerB);
 var a = 0;
 var expectedButtonIndex = 0;
 var failureTimer;
+var i;
 
 
 //how playerA starts
@@ -100,7 +105,7 @@ function showImage() {
     // This will make it easy to alternate images and blanks one after the other
     if (expectedButtonIndex % 2 === 0) {
         // Show image
-        $("#top-image").html("<img class = 'game-image' src=" + playerA[expectedButtonIndex] + ".png>");
+        $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
     } else {
         // Show blank
         $("#top-image").empty();
@@ -110,7 +115,7 @@ function showImage() {
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
-    // failureTimer = setTimeout(failed, 3000);
+    // failureTimer = setTimeout(failed, 5000);
 }
 
 function failed() {
@@ -119,16 +124,18 @@ function failed() {
 
 }
 
-$(".game-button").on("click", function () {
+$("#image-buttons").on("click","button", function() {
+    console.log("i clicked the button");
     // Whether this is correct or not, we don't need the failure timer
     // clearTimeout(failureTimer);
 
     var buttonThatWasClicked = $(this).data("let");
-    console.log(buttonThatWasClicked);
-    console.log(expectedButtonIndex);
-    if (buttonThatWasClicked === expectedButtonIndex + 1) {
+    console.log("button that was clicked = " + buttonThatWasClicked);
+    console.log("how many clicks before last one = " + expectedButtonIndex);
+    if (buttonThatWasClicked == numberIndexForIcons[expectedButtonIndex]) {
         //Prepare for showing the next image/blank
         expectedButtonIndex++;
+        console.log("latest number of clicks = " + expectedButtonIndex);
 
         // If we don't have anything to show, we are done
         if (expectedButtonIndex > listOfClick.length - 1) {
