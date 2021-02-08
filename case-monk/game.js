@@ -53,6 +53,9 @@ for (var i = 0; i < listOfClick.length; i++) {
     }
 }
 
+console.log(playerA);
+console.log(playerB);
+
 //render game
 var a = 0;
 var expectedButtonIndex = 0;
@@ -80,12 +83,16 @@ function startGameA() {
             button.html("<img src =" + iconOptions[i] + ".png>");
             $("#image-buttons").append(button);
         }
-
-        showImage();
+        restartGame();
 
     }
 
+}
 
+function restartGame() {
+    // Just set the button index to the beginning and call the function for showing the image
+    expectedButtonIndex = 0;
+    showImage();
 }
 
 function showImage() {
@@ -103,43 +110,36 @@ function showImage() {
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
-    failureTimer = setTimeout(timeExpired, 3000);
+    failureTimer = setTimeout(failed, 3000);
 }
 
-// function restartGame() {
-//     // Just set the button index to the beginning and call the function for showing the image
-//     expectedButtonIndex = 0;
-//     showImage();
-// }
+function failed() {
+    // TODO Show a message if you want to, and then restart the game
+    alert("you are not doing it right!");
 
+}
 
-// function failed() {
-//     // TODO Show a message if you want to, and then restart the game
-//     alert("you are not doing it right!");
-//     restartGame();
-// }
+$(".game-button").on("click", function () {
+    // Whether this is correct or not, we don't need the failure timer
+    clearTimeout(failureTimer);
 
-// button.onClick() {
-//     // Whether this is correct or not, we don't need the failure timer
-//     clearTimeout(failureTimer);
+    var buttonThatWasClicked = $(this).data("let");
+    console.log(buttonThatWasClicked);
+    console.log(expectedButtonIndex);
+    if (buttonThatWasClicked === expectedButtonIndex + 1) {
+        //Prepare for showing the next image/blank
+        expectedButtonIndex++;
 
-//     var buttonThatWasClicked = ...;
-//     if (buttonThatWasClicked == buttons[expectedButtonIndex]) {
-//         //Prepare for showing the next image/blank
-//         expectedButtonIndex++;
+        // If we don't have anything to show, we are done
+        if (expectedButtonIndex > listOfClick.length - 1) {
+            // TODO Successfully completed the game
+            return;
+        }
 
-//         // If we don't have anything to show, we are done
-//         if (expectedButtonIndex > totalButtons) {
-//             // TODO Successfully completed the game
-//             return;
-//         }
-
-//         // If we do have more images, show it now
-//         showImage();
-//     } else {
-//         // Clicked the wrong button, that's a failure similarly to 3secs expiring
-//         failed();
-//     }
-// }
-
-// restartGame();
+        // If we do have more images, show it now
+        showImage();
+    } else {
+        // Clicked the wrong button, that's a failure similarly to 3secs expiring
+        failed();
+    }
+})
