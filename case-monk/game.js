@@ -85,6 +85,7 @@ function restartGame() {
 }
 
 
+
 function showImage() {
     firebase.database().ref().once("value").then(function (snapshot) {
         AorB = snapshot.val().user.order[gameID].AorB;
@@ -96,11 +97,11 @@ function showImage() {
                 $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
             } else {
                 // Show blank
-                $("#top-image").html("<img class = 'game-image' src='./icon/blank.png>'");
+                $("#top-image").html("<img class = 'game-image' src=./icon/blank.png>");
             }
         } else {
             if (expectedButtonIndex % 2 === 0) {
-                $("#top-image").html("<img class = 'game-image' src='./icon/blank.png>'");
+                $("#top-image").html("<img class = 'game-image' src=./icon/blank.png>"); 
             } else {
                 $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
             }
