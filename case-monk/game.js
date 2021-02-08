@@ -110,7 +110,7 @@ function showImage() {
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
-    failureTimer = setTimeout(failed, 3000);
+    // failureTimer = setTimeout(failed, 3000);
 }
 
 function failed() {
@@ -121,7 +121,7 @@ function failed() {
 
 $(".game-button").on("click", function () {
     // Whether this is correct or not, we don't need the failure timer
-    clearTimeout(failureTimer);
+    // clearTimeout(failureTimer);
 
     var buttonThatWasClicked = $(this).data("let");
     console.log(buttonThatWasClicked);
