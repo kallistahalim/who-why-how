@@ -111,7 +111,7 @@ function showImage() {
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
-    failureTimer = setTimeout(failed, 5000);
+    failureTimer = setTimeout(failed, 8000);
 
 }
 
