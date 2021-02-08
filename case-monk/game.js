@@ -81,42 +81,41 @@ function startGame() {
 function restartGame() {
     // Just set the button index to the beginning and call the function for showing the image
     expectedButtonIndex = 0;
+    showImage();
+}
+
+
+function showImage() {
     firebase.database().ref().once("value").then(function (snapshot) {
         AorB = snapshot.val().user.order[gameID].AorB;
         if (AorB === "A") {
-            showImageA();
+            // Something like if it's an even index, show image, otherwise show blank?
+            // This will make it easy to alternate images and blanks one after the other
+            if (expectedButtonIndex % 2 === 0) {
+                // Show image
+                $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
+            } else {
+                // Show blank
+                $("#top-image").html("<img class = 'game-image' src='./icon/blank.png>'");
+            }
         } else {
-            showImageB();
+            if (expectedButtonIndex % 2 === 0) {
+                $("#top-image").html("<img class = 'game-image' src='./icon/blank.png>'");
+            } else {
+                $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
+            }
         }
     })
-}
-
-function showImageA() {
-    // Something like if it's an even index, show image, otherwise show blank?
-    // This will make it easy to alternate images and blanks one after the other
-    if (expectedButtonIndex % 2 === 0) {
-        // Show image
-        $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
-    } else {
-        // Show blank
-        $("#top-image").empty();
-    }
-
     // Start the timer for the game to fail in 3 seconds if the user doesn't do anything
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
     failureTimer = setTimeout(failed, 5000);
+
 }
 
-function showImageB() {
-    if (expectedButtonIndex % 2 === 0) {
-        $("#top-image").empty();
-    } else {
-        $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
-    }
-    failureTimer = setTimeout(failed, 5000);
-}
+
+
 
 
 
