@@ -26,12 +26,7 @@ firebase.database().ref().once("value").then(function (snapshot) {
         if (snapshot.val().user.order[gameID] == undefined) {
             $("image-buttons").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
         } else {
-            AorB = snapshot.val().user.order[gameID].AorB;
-            if (AorB === "A") {
-                startGameA();
-            } else {
-                startGameB();
-            }
+            startGame();
 
         }
 
@@ -68,39 +63,35 @@ var i;
 
 
 //how playerA starts
-function startGameA() {
+function startGame() {
     $("#image-buttons").empty();
 
-    //game is done
-    if (a >= playerA.length - 1) {
-        $("#top-image").empty();
-        $("#image-buttons").html("Open __________");
-        return;
-
-        //game starts and continue
-    } else {
-
-        //print out image buttons
-        for (var i = 0; i < iconOptions.length; i++) {
-            var button = $("<button>");
-            button.addClass("game-button");
-            button.attr("data-let", (i));
-            button.html("<img src =" + iconOptions[i] + ".png>");
-            $("#image-buttons").append(button);
-        }
-        restartGame();
-
+    //print out image buttons
+    for (var i = 0; i < iconOptions.length; i++) {
+        var button = $("<button>");
+        button.addClass("game-button");
+        button.attr("data-let", (i));
+        button.html("<img src =" + iconOptions[i] + ".png>");
+        $("#image-buttons").append(button);
     }
+    restartGame();
 
 }
 
 function restartGame() {
     // Just set the button index to the beginning and call the function for showing the image
     expectedButtonIndex = 0;
-    showImage();
+    firebase.database().ref().once("value").then(function (snapshot) {
+        AorB = snapshot.val().user.order[gameID].AorB;
+        if (AorB === "A") {
+            showImageA();
+        } else {
+            showImageB();
+        }
+    })
 }
 
-function showImage() {
+function showImageA() {
     // Something like if it's an even index, show image, otherwise show blank?
     // This will make it easy to alternate images and blanks one after the other
     if (expectedButtonIndex % 2 === 0) {
@@ -115,19 +106,31 @@ function showImage() {
     // If they do click a button, we have the onClick code below which will either
     //   a) Stop this timer if they made the correct choice
     //   b) End the game if they clicked the correct one
-    // failureTimer = setTimeout(failed, 5000);
+    failureTimer = setTimeout(failed, 5000);
 }
+
+function showImageB() {
+    if (expectedButtonIndex % 2 === 0) {
+        $("#top-image").empty();
+    } else {
+        $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
+    }
+    failureTimer = setTimeout(failed, 5000);
+}
+
+
 
 function failed() {
     // TODO Show a message if you want to, and then restart the game
     alert("you are not doing it right!");
+    return;
 
 }
 
-$("#image-buttons").on("click","button", function() {
+$("#image-buttons").on("click", "button", function () {
     console.log("i clicked the button");
     // Whether this is correct or not, we don't need the failure timer
-    // clearTimeout(failureTimer);
+    clearTimeout(failureTimer);
 
     var buttonThatWasClicked = $(this).data("let");
     console.log("button that was clicked = " + buttonThatWasClicked);
@@ -140,6 +143,8 @@ $("#image-buttons").on("click","button", function() {
         // If we don't have anything to show, we are done
         if (expectedButtonIndex > listOfClick.length - 1) {
             // TODO Successfully completed the game
+            $("#top-image").empty();
+            $("#image-buttons").html("Open __________");
             return;
         }
 
