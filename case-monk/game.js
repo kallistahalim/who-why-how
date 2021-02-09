@@ -98,40 +98,6 @@ function showImage() {
 }
 
 
-// function showImage() {
-//     firebase.database().ref().once("value").then(function (snapshot) {
-//         AorB = snapshot.val().user.order[gameID].AorB;
-//         if (AorB === "A") {
-//             // Something like if it's an even index, show image, otherwise show blank?
-//             // This will make it easy to alternate images and blanks one after the other
-//             if (expectedButtonIndex % 2 === 0) {
-//                 // Show image
-//                 $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
-//             } else {
-//                 // Show blank
-//                 $("#top-image").html("<img class = 'game-image' src=./icon/blank.png>");
-//             }
-//         } else {
-//             if (expectedButtonIndex % 2 === 0) {
-//                 $("#top-image").html("<img class = 'game-image' src=./icon/blank.png>");
-//             } else {
-//                 $("#top-image").html("<img class = 'game-image' src=" + listOfClick[expectedButtonIndex] + ".png>");
-//             }
-//         }
-//     })
-//     // Start the timer for the game to fail in 3 seconds if the user doesn't do anything
-//     // If they do click a button, we have the onClick code below which will either
-//     //   a) Stop this timer if they made the correct choice
-//     //   b) End the game if they clicked the correct one
-//     failureTimer = setTimeout(failed, 8000);
-
-// }
-
-
-
-
-
-
 function failed() {
     // TODO Show a message if you want to, and then restart the game
     alert("you are not doing it right!");
