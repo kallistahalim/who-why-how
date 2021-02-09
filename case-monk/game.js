@@ -34,9 +34,9 @@ firebase.database().ref().once("value").then(function (snapshot) {
 //images submitted
 var iconOptions = ["./icon/1", "./icon/2", "./icon/3", "./icon/4", "./icon/5", "./icon/6", "./icon/7", "./icon/8", "./icon/9", "./icon/10"];
 
-var listOfClick = [iconOptions[0], iconOptions[3], iconOptions[7], iconOptions[1], iconOptions[9], iconOptions[2], iconOptions[6], iconOptions[8], iconOptions[3], iconOptions[5], iconOptions[7], iconOptions[0], iconOptions[8], iconOptions[4], iconOptions[1], iconOptions[6], iconOptions[5], iconOptions[9], iconOptions[4], iconOptions[2]];
+var numberIndexForIcons = [0, 3, 7, 1, 9, 2, 6, 8, 3, 5, 7, 0, 8, 4, 1, 6, 5, 9, 4, 2];
 
-var numberIndexForIcons = [0, 3, 7, 1, 9, 2, 6, 8, 3, 5, 7, 0, 8, 4, 1, 6, 5, 9, 4, 2]
+var listOfClick = numberIndexForIcons.map(index => iconOptions[index]);
 
 
 var playerA = [];
@@ -96,7 +96,6 @@ function showImage() {
     //   b) End the game if they clicked the correct one
     failureTimer = setTimeout(failed, 8000);
 }
-
 
 function failed() {
     // TODO Show a message if you want to, and then restart the game
