@@ -21,7 +21,7 @@ firebase.database().ref().once("value").then(function (snapshot) {
         gameID = $("#game-id-input").val();
         $("#game-id").empty();
         if (snapshot.val().user.order[gameID] == undefined) {
-            $("image-buttons").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
+            $("#image-buttons").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
         } else {
             startGame();
 
