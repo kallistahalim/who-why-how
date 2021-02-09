@@ -16,12 +16,9 @@ firebase.initializeApp(firebaseConfig);
 var AorB;
 
 firebase.database().ref().once("value").then(function (snapshot) {
-    console.log(snapshot.val());
 
     $("#submit").on("click", function () {
         gameID = $("#game-id-input").val();
-        console.log(gameID);
-        console.log(snapshot.val().user.order[gameID]);
         $("#game-id").empty();
         if (snapshot.val().user.order[gameID] == undefined) {
             $("image-buttons").html("I am sorry we could not verify your ID Number. Please contact +62 81 1952 6700");
@@ -51,9 +48,6 @@ for (var i = 0; i < listOfClick.length; i++) {
         playerB.push(listOfClick[i]);
     }
 }
-
-console.log(playerA);
-console.log(playerB);
 
 //render game
 var a = 0;
