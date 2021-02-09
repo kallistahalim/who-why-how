@@ -122,17 +122,13 @@ function failed() {
 }
 
 $("#image-buttons").on("click", "button", function () {
-    console.log("i clicked the button");
     // Whether this is correct or not, we don't need the failure timer
     clearTimeout(failureTimer);
 
     var buttonThatWasClicked = $(this).data("let");
-    console.log("button that was clicked = " + buttonThatWasClicked);
-    console.log("how many clicks before last one = " + expectedButtonIndex);
     if (buttonThatWasClicked == numberIndexForIcons[expectedButtonIndex]) {
         //Prepare for showing the next image/blank
         expectedButtonIndex++;
-        console.log("latest number of clicks = " + expectedButtonIndex);
 
         // If we don't have anything to show, we are done
         if (expectedButtonIndex > listOfClick.length - 1) {
