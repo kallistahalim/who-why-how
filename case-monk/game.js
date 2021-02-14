@@ -117,7 +117,7 @@ $("#image-buttons").on("click", "button", function () {
         if (expectedButtonIndex > listOfClick.length - 1) {
             // TODO Successfully completed the game
             $("#top-image").empty();
-            $("#image-buttons").html("OPEN PI");
+            $("#image-buttons").html("OPEN TAU");
             return;
         }
 
